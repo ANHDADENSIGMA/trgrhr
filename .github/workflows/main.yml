@@ -1,12 +1,11 @@
 
+
 name: Build The Stalker Six Nights
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-      - master
+    branches: [main, master]
 
 permissions:
   contents: read
@@ -24,20 +23,40 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-          cache: gradle
+
+      - name: Find Gradle project
+        run: |
+          echo "=== Repository files ==="
+          ls -la
+          echo "=== Search build files ==="
+          find . -maxdepth 4 \( \
+            -name gradlew -o \
+            -name build.gradle -o \
+            -name build.gradle.kts -o \
+            -name settings.gradle -o \
+            -name settings.gradle.kts \
+          \) -print
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Grant execute permission
-        run: chmod +x gradlew
-
-      - name: Build Forge mod
-        run: ./gradlew build --no-daemon
+      - name: Build mod
+        shell: bash
+        run: |
+          if [ -f gradlew ]; then
+            chmod +x gradlew
+            ./gradlew build --no-daemon
+          elif [ -f build.gradle ] || [ -f build.gradle.kts ]; then
+            gradle build --no-daemon
+          else
+            echo "::error::Không tìm thấy build.gradle hoặc gradlew ở thư mục gốc."
+            echo "Kiểm tra log Find Gradle project để xác định thư mục dự án."
+            exit 1
+          fi
 
       - name: Upload mod JAR
         uses: actions/upload-artifact@v4
         with:
           name: The-Stalker-Six-Nights
-          path: build/libs/*.jar
+          path: '**/build/libs/*.jar'
           if-no-files-found: error
