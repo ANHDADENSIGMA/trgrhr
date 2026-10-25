@@ -177,7 +177,7 @@ public final class StalkerEvents {
         if (door != null) {
             level.playSound(null, door, SoundEvents.WOODEN_DOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 0.62F);
             level.playSound(null, door, SoundEvents.WOODEN_DOOR_CLOSE, SoundSource.BLOCKS, 0.9F, 0.78F);
-            if (RANDOM.nextBoolean()) level.playSound(null, door, SoundEvents.WOODEN_DOOR_HIT, SoundSource.BLOCKS, 0.8F, 0.58F);
+            if (RANDOM.nextBoolean()) level.playSound(null, door, SoundEvents.WOODEN_DOOR_CLOSE, SoundSource.BLOCKS, 0.8F, 0.58F);
             player.displayClientMessage(Component.literal("§8* knock... knock... *"), true);
         } else {
             BlockPos pos = player.blockPosition().offset(RANDOM.nextInt(13) - 6, 0, RANDOM.nextInt(13) - 6);
@@ -332,7 +332,7 @@ public final class StalkerEvents {
 
         if (dot > 0.965 && visible && distanceSqr < 26.0 * 26.0) {
             level.playSound(null, watcher.blockPosition(), SoundEvents.ENDERMAN_SCREAM, SoundSource.HOSTILE, 1.0F, 0.65F);
-            level.playSound(null, player.blockPosition(), SoundEvents.AMBIENT_CAVE, SoundSource.AMBIENT, 0.9F, 0.45F);
+            level.playSound(null, player.blockPosition(), SoundEvents.AMBIENT_CAVE.value(), SoundSource.AMBIENT, 0.9F, 0.45F);
             watcher.discard();
             data.remove(STALKER_ID);
             player.displayClientMessage(Component.literal("§8You blink. The figure is gone."), true);
