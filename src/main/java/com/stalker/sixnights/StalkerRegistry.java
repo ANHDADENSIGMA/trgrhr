@@ -17,8 +17,11 @@ public final class StalkerRegistry {
                     .sized(0.68F, 2.85F).clientTrackingRange(12).updateInterval(2)
                     .build("stalkersixnights:stalker"));
 
-    public static final RegistryObject<Item> STALKER_SPAWN_EGG = ITEMS.register("stalker_spawn_egg", () ->
-            new SpawnEggItem(STALKER.get(), 0x080808, 0x5A1018, new Item.Properties());
-
-    private StalkerRegistry() {}
-}
+    public static final RegistryObject<Item> STALKER_SPAWN_EGG =
+        ITEMS.register("stalker_spawn_egg",
+                () -> new SpawnEggItem(
+                        STALKER.get(),
+                        0x080808,
+                        0x5A1018,
+                        new Item.Properties()
+                ));
