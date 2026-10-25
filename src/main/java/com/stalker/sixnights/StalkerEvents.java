@@ -143,7 +143,7 @@ public final class StalkerEvents {
 
     private static void whisper(ServerPlayer player, ServerLevel level, boolean intense) {
         BlockPos soundPos = player.blockPosition();
-        level.playSound(null, soundPos, SoundEvents.AMBIENT_CAVE, SoundSource.AMBIENT,
+        level.playSound(null, soundPos, SoundEvents.AMBIENT_CAVE.value(), SoundSource.AMBIENT,
                 intense ? 0.95F : 0.48F, intense ? 0.55F : 0.82F);
         if (intense) {
             int line = RANDOM.nextInt(4);
@@ -175,8 +175,8 @@ public final class StalkerEvents {
     private static void knockNearby(ServerPlayer player, ServerLevel level, boolean hasShelter) {
         BlockPos door = findNearbyDoor(player, level, 12);
         if (door != null) {
-            level.playSound(null, door, SoundEvents.WOODEN_DOOR_HIT, SoundSource.BLOCKS, 1.0F, 0.62F);
-            level.playSound(null, door, SoundEvents.WOODEN_DOOR_HIT, SoundSource.BLOCKS, 0.9F, 0.78F);
+            level.playSound(null, door, SoundEvents.WOODEN_DOOR_CLOSE, SoundSource.BLOCKS, 1.0F, 0.62F);
+            level.playSound(null, door, SoundEvents.WOODEN_DOOR_CLOSE, SoundSource.BLOCKS, 0.9F, 0.78F);
             if (RANDOM.nextBoolean()) level.playSound(null, door, SoundEvents.WOODEN_DOOR_HIT, SoundSource.BLOCKS, 0.8F, 0.58F);
             player.displayClientMessage(Component.literal("§8* knock... knock... *"), true);
         } else {
