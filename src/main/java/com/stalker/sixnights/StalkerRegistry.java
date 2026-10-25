@@ -18,7 +18,7 @@ public final class StalkerRegistry {
                     .build("stalkersixnights:stalker"));
 
     public static final RegistryObject<Item> STALKER_SPAWN_EGG = ITEMS.register("stalker_spawn_egg", () ->
-            new SpawnEggItem(STALKER, 0x080808, 0x5A1018, new Item.Properties()));
+            new SpawnEggItem(STALKER.get(), 0x080808, 0x5A1018, new Item.Properties());
 
     private StalkerRegistry() {}
 }
