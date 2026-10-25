@@ -25,3 +25,4 @@ public final class StalkerRegistry {
                         0x5A1018,
                         new Item.Properties()
                 ));
+}
