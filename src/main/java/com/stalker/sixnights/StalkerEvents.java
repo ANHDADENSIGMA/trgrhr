@@ -181,7 +181,7 @@ public final class StalkerEvents {
             player.displayClientMessage(Component.literal("§8* knock... knock... *"), true);
         } else {
             BlockPos pos = player.blockPosition().offset(RANDOM.nextInt(13) - 6, 0, RANDOM.nextInt(13) - 6);
-            level.playSound(null, pos, SoundEvents.WOODEN_DOOR_HIT, SoundSource.AMBIENT, hasShelter ? 0.65F : 0.9F, 0.6F);
+            level.playSound(null, pos, SoundEvents.WOODEN_DOOR_CLOSE, SoundSource.AMBIENT, hasShelter ? 0.65F : 0.9F, 0.6F);
             player.displayClientMessage(Component.literal("§8A knock comes from the dark."), true);
         }
     }
